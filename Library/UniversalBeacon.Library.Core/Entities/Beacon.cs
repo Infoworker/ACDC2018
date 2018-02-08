@@ -73,6 +73,8 @@ namespace UniversalBeacon.Library.Core.Entities
         /// </summary>
         public ObservableCollection<BeaconFrameBase> BeaconFrames { get; set; } = new ObservableCollection<BeaconFrameBase>();
 
+
+        
         private short _rssi;
         /// <summary>
         /// Raw signal strength in dBM.
@@ -143,6 +145,7 @@ namespace UniversalBeacon.Library.Core.Entities
         public Beacon(BLEAdvertisementPacket btAdv)
         {
             BluetoothAddress = btAdv.BluetoothAddress;
+       
             UpdateBeacon(btAdv);
         }
 
@@ -152,6 +155,7 @@ namespace UniversalBeacon.Library.Core.Entities
         /// <param name="beaconType">Beacon type to use for this manually constructed beacon.</param>
         public Beacon(BeaconTypeEnum beaconType)
         {
+            if( beaconType != BeaconTypeEnum.Unknown )
             BeaconType = beaconType;
         }
 
@@ -166,6 +170,7 @@ namespace UniversalBeacon.Library.Core.Entities
         {
             if (btAdv == null) return;
 
+            if (BeaconType != BeaconTypeEnum.Unknown) { Console.WriteLine("VI ER I UPDATEBEACON"); return; }
             // Only update beacon info if it's the same beacon
             if (btAdv.BluetoothAddress != BluetoothAddress)
             {
@@ -253,6 +258,7 @@ namespace UniversalBeacon.Library.Core.Entities
 
         private void ParseEddystoneData(BLEAdvertisementPacket btAdv)
         {
+            
             // Parse Eddystone data
             foreach (var dataSection in btAdv.Advertisement.DataSections)
             {

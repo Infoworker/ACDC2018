@@ -33,6 +33,13 @@ using UniversalBeacon.Library.Core.Entities;
 using UniversalBeacon.Library.Core.Interop;
 using UniversalBeacon.Library.UWP;
 using UniversalBeaconLibrary;
+using System.Net;
+using System.Text;
+using System.Net.Http;
+using Newtonsoft.Json;
+using System.Threading.Tasks;
+using Windows.Security.Credentials;
+using Windows.Security.Authentication.Web.Core;
 
 namespace WindowsBeacons
 {
@@ -150,12 +157,12 @@ namespace WindowsBeacons
         /// <param name="sender">Reference to the sender instance of the event.</param>
         /// <param name="beacon">Beacon class instance containing all known and parsed information about
         /// the Bluetooth beacon.</param>
-        private void BeaconManagerOnBeaconAdded(object sender, Beacon beacon)
+        private async void BeaconManagerOnBeaconAdded(object sender, Beacon beacon)
         {
-            Debug.WriteLine("\nBeacon: " + beacon.BluetoothAddressAsString);
-            Debug.WriteLine("Type: " + beacon.BeaconType);
-            Debug.WriteLine("Last Update: " + beacon.Timestamp);
-            Debug.WriteLine("RSSI: " + beacon.Rssi);
+            //Debug.WriteLine("\nBeacon: " + beacon.BluetoothAddressAsString);
+            //Debug.WriteLine("Type: " + beacon.BeaconType);
+            //Debug.WriteLine("Last Update: " + beacon.Timestamp);
+            //Debug.WriteLine("RSSI: " + beacon.Rssi);
             foreach (var beaconFrame in beacon.BeaconFrames.ToList())
             {
                 // Print a small sample of the available data parsed by the library
@@ -184,10 +191,26 @@ namespace WindowsBeacons
                 }
                 else if (beaconFrame is ProximityBeaconFrame)
                 {
-                    Debug.WriteLine("Proximity Beacon Frame (iBeacon compatible)");
-                    Debug.WriteLine("Uuid: " + ((ProximityBeaconFrame)beaconFrame).UuidAsString);
-                    Debug.WriteLine("Major: " + ((ProximityBeaconFrame)beaconFrame).MajorAsString);
-                    Debug.WriteLine("Major: " + ((ProximityBeaconFrame)beaconFrame).MinorAsString);
+
+                    //var btall = Convert.ToInt32(((ProximityBeaconFrame)beaconFrame).MajorAsString);
+                   ServiceReference1.Service1Client client = new ServiceReference1.Service1Client();
+                    try
+                    {
+                        await client.InsertDataAsync(System.Net.Dns.GetHostName(), ((ProximityBeaconFrame)beaconFrame).MajorAsString);
+                    }
+                    catch (Exception e)
+                    {
+                        Debug.WriteLine("Feil melding: " +e);
+                        
+                        throw;
+                    }
+                   
+
+              
+                    //Debug.WriteLine("Proximity Beacon Frame (iBeacon compatible)");
+                    //Debug.WriteLine("Uuid: " + ((ProximityBeaconFrame)beaconFrame).UuidAsString);
+                    //Debug.WriteLine("Major: " + ((ProximityBeaconFrame)beaconFrame).MajorAsString);
+                    //Debug.WriteLine("Major: " + ((ProximityBeaconFrame)beaconFrame).MinorAsString);
                 }
                 else
                 {
@@ -196,6 +219,7 @@ namespace WindowsBeacons
                 }
             }
         }
+        
 
         private void WatcherOnStopped(object sender, BTError btError)
         {
@@ -344,6 +368,27 @@ namespace WindowsBeacons
         #endregion
 
         #region Tools
+        //public void InsertData()
+        //{
+        //    var request = (HttpWebRequest)WebRequest.Create("https://prod-35.westeurope.logic.azure.com:443/workflows/37e0e31c0f3a4f1cb32831edecbc1520/triggers/manual/paths/invoke?api-version=2016-10-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=GAh3EZWAij2NO7sDmCEEmhWvwBfolv93vTEeboSD-hE");
+
+        //    var postData = "{\n\"Station\" : \"From RB\",\n\"PersonId\" : 1\n}";
+        //    var data = Encoding.ASCII.GetBytes(postData);
+
+        //    request.Method = "POST";
+        //    request.ContentType = "application/json";
+        //    request.ContentLength = data.Length;
+
+        //    using (var stream = request.GetRequestStream())
+        //    {
+        //        stream.Write(data, 0, data.Length);
+        //    }
+
+        //    var response = (HttpWebResponse)request.GetResponse();
+
+        //    var responseString = new StreamReader(response.GetResponseStream()).ReadToEnd();
+        //}
+
         /// <summary>
         /// Convert minus-separated hex string to a byte array. Format example: "4E-66-63"
         /// </summary>

@@ -113,12 +113,12 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.NETCore.UniversalWindowsPlatform">
-      <Version>5.4.0</Version>
+      <Version>6.0.6</Version>
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\UniversalBeacon.Library.Core\UniversalBeacon.Library.Core.csproj">
-      <Project>{83be2e56-2400-40a2-8d88-b5dae98213e1}</Project>
+      <Project>{8a11bd89-a4ff-480f-acee-47a2495a16e5}</Project>
       <Name>UniversalBeacon.Library.Core</Name>
     </ProjectReference>
   </ItemGroup>

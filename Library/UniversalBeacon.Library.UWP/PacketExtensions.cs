@@ -1,7 +1,6 @@
 ﻿using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.Devices.Bluetooth.Advertisement;
 using UniversalBeacon.Library.Core.Interop;
-
 namespace UniversalBeacon.Library.UWP
 {
     internal static class PacketExtensions
@@ -21,6 +20,7 @@ namespace UniversalBeacon.Library.UWP
                 RawSignalStrengthInDBm = args.RawSignalStrengthInDBm,
                 AdvertisementType = (BLEAdvertisementType) args.AdvertisementType,
                 Advertisement = args.Advertisement.ToUniversalAdvertisement()
+         
             };
 
             return packet;
