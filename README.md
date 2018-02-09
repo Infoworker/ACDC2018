@@ -1,4 +1,4 @@
-# Universal Bluetooth Beacon Library
+# The Info Watch Beacon
 
 
 Referance by Andreas Jakl and Chris Tacke
