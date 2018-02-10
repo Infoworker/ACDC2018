@@ -25,13 +25,8 @@
 	<!-- Cross-platform reference assemblies -->
     <file src="D:\Source\GitHub\universal-beacon\Library\UniversalBeacon.Library.Core\bin\Release\netstandard1.3\UniversalBeacon.Library.Core.dll" target="lib\netstandard1.3\UniversalBeacon.Library.Core.dll" />
     <file src="D:\Source\GitHub\universal-beacon\Library\UniversalBeacon.Library.Core\bin\Release\netstandard1.3\UniversalBeacon.Library.Core.pdb" target="lib\netstandard1.3\UniversalBeacon.Library.Core.pdb" />
+
 	
-	<!-- Android reference assemblies -->
-	<file src="D:\Source\GitHub\universal-beacon\Library\UniversalBeacon.Library.Android\bin\Release\UniversalBeacon.Library.Core.dll" target="lib\MonoAndroid10\UniversalBeacon.Library.Core.dll" />
-	<file src="D:\Source\GitHub\universal-beacon\Library\UniversalBeacon.Library.Android\bin\Release\UniversalBeacon.Library.Core.pdb" target="lib\MonoAndroid10\UniversalBeacon.Library.Core.pdb" />
-	<file src="D:\Source\GitHub\universal-beacon\Library\UniversalBeacon.Library.Android\bin\Release\UniversalBeacon.Library.Android.dll" target="lib\MonoAndroid10\UniversalBeacon.Library.Android.dll" />
-	<file src="D:\Source\GitHub\universal-beacon\Library\UniversalBeacon.Library.Android\bin\Release\UniversalBeacon.Library.Android.pdb" target="lib\MonoAndroid10\UniversalBeacon.Library.Android.pdb" />
-    
 	<!-- UWP reference assemblies -->
 	<file src="D:\Source\GitHub\universal-beacon\Library\UniversalBeacon.Library.UWP\bin\Release\UniversalBeacon.Library.Core.dll" target="lib\UAP10\UniversalBeacon.Library.Core.dll" />
 	<file src="D:\Source\GitHub\universal-beacon\Library\UniversalBeacon.Library.UWP\bin\Release\UniversalBeacon.Library.Core.pdb" target="lib\UAP10\UniversalBeacon.Library.Core.pdb" />
