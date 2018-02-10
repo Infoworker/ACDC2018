@@ -123,6 +123,7 @@
     <None Include="Service References\ServiceReference1\WindowsBeacons.ServiceReference1.CompositeType.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
+    <None Include="WindowsBeacons_TemporaryKey.pfx" />
     <PRIResource Include="Strings\fr-FR\Resources.resw">
       <SubType>Designer</SubType>
     </PRIResource>
